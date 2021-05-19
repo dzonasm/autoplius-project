@@ -1,8 +1,11 @@
 const router = require('express').Router();
 const multer = require('multer');
 
-const userController = require('../controllers/userController');
-const authenticateMiddleware = require('../middleware/authenticate');
+
+const carController = require('../controllers/carController')
+const userController = require('../controllers/userController')
+const authenticateMiddleware = require('../middleware/authenticate')
+
 
 const storage = multer.diskStorage({
 	destination: (req, file, cb) => {
