@@ -36,6 +36,6 @@ const carPost = new mongoose.Schema({
 })
 
 
-const Car = mongoose.model('Tweets', carPost)
+const Car = mongoose.model('Cars', carPost)
 
 module.exports = Car

@@ -4,7 +4,7 @@ const multer = require('multer')
 const { testMiddleware } = require('../middleware/testMiddleware')
 
 const { checkApi, checkPostApi } = require('../controllers/apiCheckController')
-const tweetController = require('../controllers/carController')
+const carController = require('../controllers/carController')
 const userController = require('../controllers/userController')
 const authenticateMiddleware = require('../middleware/authenticate')
 
