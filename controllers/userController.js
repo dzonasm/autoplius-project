@@ -5,8 +5,6 @@ const Session = require('../models/sessionModel')
 
 const signUp = async (req, res) => {
 	try {
-		// bcrypt pries saugojant i duomenu baze uzhashinam passworda, ir jau saugom hasha vietoj tikrojo passwordo
-
 		const user = new User({
 			email: req.body.email,
 			password: req.body.password,
@@ -25,38 +23,22 @@ const getAllUsers = async (req, res) => {
 	res.send(allUsers)
 }
 
-// req (request - uzklausa)
-// req = {
-//  body: {}
-//  ip: 92.213.123.12
-//  browser: "chrome v12.2.3.5.5"
-//  header: {}
-// }
-
-// res (response - atsakymas)
-// res.send() siunciam informacija atgal uzsakovui (front-end)
-
 const signIn = async (req, res) => {
 	try {
-		// paemam useri is database pagal email, nes emailas yra unikalus
 		let user = await User.findOne({
 			email: req.body.email,
 		})
-		// siunciam error jeigu buvo nerastas useris su tokiu emailu
 		if (!user)
 			throw {
 				message: 'Wrong email',
 			}
-		// patikrinam ar siustas userio passwordas kai jis yra uzhashintas sutampa su duombazej hashintu passwordu
 		let passwordMatch = bcrypt.compareSync(req.body.password, user.password)
 
 		console.log(passwordMatch, req.body.password, user.password)
-		// jei ne siunciam error
 		if (!passwordMatch)
 			throw {
 				message: 'Wrong password',
 			}
-		//kuriam sessijos tokena
 
 		let token = jwt.sign(
 			{
@@ -73,10 +55,8 @@ const signIn = async (req, res) => {
 
 		await session.save()
 
-		// jei viskas ok siunciam userioobjekta
-		res.header('twitterauth', token).send(user)
+		res.header('userauth', token).send(user)
 	} catch (e) {
-		console.log(e)
 		res.status(400).send(e)
 	}
 }
@@ -100,7 +80,6 @@ const logOut = async (req, res) => {
 }
 
 const updateUserInfo = async (req, res) => {
-	console.log(req.file)
 	let user = req.user
 	if (req.profileImage) {
 		user.profileImage = req.file.path
