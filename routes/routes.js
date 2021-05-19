@@ -33,13 +33,12 @@ router.route('/cars/search').get((req, res) => {
 	res.send('serching for cars');
 });
 
-router.route('./cars/upload').post((req, res) => {
-	res.send('posting car');
-});
+router.route('/cars/upload').post(carController.createPost);
 
 router.route('.cars/delete').delete((req, res) => {
 	res.send('deleted car');
 });
+
 
 // user
 router.route('/user/signUp').post(userController.signUp);

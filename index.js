@@ -8,11 +8,11 @@ const cors = require('cors')
 const router = require('./routes/routes')
 
 const corsOptions = {
-	allowedHeaders: ['twitterauth', 'Content-Type'],
-	exposedHeaders: ['twitterauth'],
+	allowedHeaders: ['userauth', 'Content-Type'],
+	exposedHeaders: ['userauth'],
 }
 
-mongoose.connect('mongodb://localhost/twitterDB', {
+mongoose.connect('mongodb://localhost/autoPlius', {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 	useCreateIndex: true,

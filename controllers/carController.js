@@ -6,10 +6,10 @@ const getMyCar = async (req, res) => {
 }
 
 const createPost = async (req, res) => {
-	console.log(req.body.content)
+	console.log(req.body)
 	try {
 		const car = new Car({
-			userId: req.user._id,
+			userId: req.body._id, //pakeisti VELIAU PO AUTENTIFIKACIJOS ... LOL
 			carDescription: req.body.carDescription,
 			carBrand: req.body.carBrand,
 			carModel: req.body.carModel,

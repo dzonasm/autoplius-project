@@ -6,7 +6,9 @@ const Session = require('../models/sessionModel')
 const signUp = async (req, res) => {
 	try {
 		const user = new User({
+			name: req.body.name,
 			email: req.body.email,
+			phone: req.body.phone,
 			password: req.body.password,
 		})
 
@@ -24,7 +26,9 @@ const getAllUsers = async (req, res) => {
 }
 
 const signIn = async (req, res) => {
+	console.log(req.body)
 	try {
+
 		let user = await User.findOne({
 			email: req.body.email,
 		})
