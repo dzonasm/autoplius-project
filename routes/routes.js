@@ -1,11 +1,9 @@
 const router = require('express').Router();
 const multer = require('multer');
 
-
-const carController = require('../controllers/carController')
-const userController = require('../controllers/userController')
-const authenticateMiddleware = require('../middleware/authenticate')
-
+const carController = require('../controllers/carController');
+const userController = require('../controllers/userController');
+const authenticateMiddleware = require('../middleware/authenticate');
 
 const storage = multer.diskStorage({
 	destination: (req, file, cb) => {
@@ -36,7 +34,6 @@ router.route('/cars/delete').delete((req, res) => {
 router.route('/cars/edit').delete((req, res) => {
 	res.send('edit car post');
 });
-a
 // user
 router.route('/user/signUp').post(userController.signUp);
 router.route('/user/signIn').post(userController.signIn);
