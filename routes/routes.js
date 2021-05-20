@@ -1,11 +1,9 @@
 const router = require('express').Router();
 const multer = require('multer');
 
-
-const carController = require('../controllers/carController')
-const userController = require('../controllers/userController')
-const authenticateMiddleware = require('../middleware/authenticate')
-
+const carController = require('../controllers/carController');
+const userController = require('../controllers/userController');
+const authenticateMiddleware = require('../middleware/authenticate');
 
 const storage = multer.diskStorage({
 	destination: (req, file, cb) => {
@@ -21,26 +19,21 @@ const upload = multer({
 });
 
 //cars
-router.route('/cars').get((req, res) => {
-	res.send('you hit the cars endpoint');
-});
-
-router.route('/cars/mycars').get((req, res) => {
-	res.send('these are my cars');
-});
+router.route('/cars').get(carController.getAllCars);
+router.route('/cars/upload').post(authenticateMiddleware.authenticate, carController.createPost);
+router.route('/cars/mycars').get(authenticateMiddleware.authenticate, carController.getMyCarPosts);
 
 router.route('/cars/search').get((req, res) => {
 	res.send('serching for cars');
 });
 
-router.route('./cars/upload').post((req, res) => {
-	res.send('posting car');
-});
-
-router.route('.cars/delete').delete((req, res) => {
+router.route('/cars/delete').delete((req, res) => {
 	res.send('deleted car');
 });
 
+router.route('/cars/edit').delete((req, res) => {
+	res.send('edit car post');
+});
 // user
 router.route('/user/signUp').post(userController.signUp);
 router.route('/user/signIn').post(userController.signIn);
