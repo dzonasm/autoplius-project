@@ -30,9 +30,9 @@ router.route('/cars/search').get((req, res) => {
 	res.send('serching for cars');
 });
 
-// user
 router.route('/user/editUserInfo').post(authenticateMiddleware.authenticate, userController.editUserInfo)
 router.route('/user/updateUserInfo').post(authenticateMiddleware.authenticate, upload.single('avatar'),userController.updateUserInfo);
+
 router.route('/user/signUp').post(userController.signUp);
 router.route('/user/signIn').post(userController.signIn);
 router.route('/user/currentUser').get(authenticateMiddleware.authenticate, userController.currentUser);

@@ -4,12 +4,14 @@ const User = require('../models/userModel');
 const Session = require('../models/sessionModel');
 
 const signUp = async (req, res) => {
+
     try {
         const user = new User({
             name: req.body.name,
             email: req.body.email,
             phone: req.body.phone,
             password: req.body.password,
+
         })
 
         let newUser = await user.save();
@@ -83,6 +85,7 @@ const logOut = async (req, res) => {
 };
 
 const updateUserInfo = async (req, res) => {
+
     let user = req.user;
     if (req.file) {
         user.profileImage = req.file.path;
@@ -102,6 +105,7 @@ const editUserInfo = async (req, res) => {
     }
 }
 
+
 module.exports = {
     signUp,
     signIn,
@@ -110,4 +114,5 @@ module.exports = {
     getAllUsers,
     updateUserInfo,
     editUserInfo
+
 };

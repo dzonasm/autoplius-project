@@ -1,6 +1,7 @@
-const Car = require('../models/carModel')
+const Car = require('../models/carModel');
 
 const getAllCars = async (req, res) => {
+
     let allCars = await Car.find().populate('userId') /*if ill leave this end it will show and ALL info bout user too*/
     res.send(allCars)
 }
@@ -30,6 +31,7 @@ const createPost = async (req, res) => {
 
 
 const getMyCarPosts = async (req, res) => {
+
     let carPosts = await Car.find({userId: req.user._id})
     res.send(carPosts)
 }
@@ -43,6 +45,7 @@ const deleteCarPost = async (req, res) => {
         res.send(e)
     }
 }
+
 
 const editCarInfo = async (req, res) => {
     try {
@@ -70,3 +73,4 @@ module.exports = {
     deleteCarPost,
     editCarInfo
 }
+
