@@ -11,9 +11,6 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
     },
-    confirmPassword: {
-        type: String,
-    },
     name: {
         type: String,
         required: true,
@@ -36,14 +33,12 @@ const userSchema = new mongoose.Schema({
             if (ret.profileImage) ret.profileImage = 'http://localhost:3000/' + ret.profileImage
         }
     }
-
 })
 
 userSchema.pre('save', function (next) {
     let user = this;
-    if (user.password !== user.confirmPassword) {
-        console.log('not the same password at the both inputs')
-    } else if (user.isModified('password')) {
+    if (user.isModified('password')) {
+
         let hash = bcrypt.hashSync(user.password, 10);
         user.password = hash;
         next();
