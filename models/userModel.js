@@ -22,7 +22,17 @@ const userSchema = new mongoose.Schema({
 		type: Date,
 		default: Date.now,
 	},
-});
+	// profileImage: {
+	// 	type: String
+	// }
+}, {
+	toJSON: {
+		transform(doc, ret) {
+			delete ret.password
+			// if(ret.profileImage) ret.profileImage= 'http://localhost:3000/' + ret.profileImage
+		}
+	}
+})
 
 userSchema.pre('save', function (next) {
 	let user = this;

@@ -84,14 +84,16 @@ const logOut = async (req, res) => {
 };
 
 const updateUserInfo = async (req, res) => {
-	let user = req.user;
-	if (req.profileImage) {
-		user.profileImage = req.file.path;
-		await user.save();
-	}
-
-	res.send(user);
+	// let user = req.user;
+	// if (req.file) {
+	// 	user.profileImage = req.file.path;
+	// 	await user.save();
+	// }
+	//
+	// res.send(user);
 };
+
+
 
 module.exports = {
 	signUp,

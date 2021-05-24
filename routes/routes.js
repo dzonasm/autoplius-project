@@ -20,20 +20,18 @@ const upload = multer({
 
 //cars
 router.route('/cars').get(carController.getAllCars);
-router.route('/cars/upload').post(authenticateMiddleware.authenticate, carController.createPost);
+
 router.route('/cars/mycars').get(authenticateMiddleware.authenticate, carController.getMyCarPosts);
+router.route('/cars/mycars').post(authenticateMiddleware.authenticate, upload.single('carImage') ,carController.createPost);
+
+
+
 
 router.route('/cars/search').get((req, res) => {
 	res.send('serching for cars');
 });
 
-router.route('/cars/delete').delete((req, res) => {
-	res.send('deleted car');
-});
-
-router.route('/cars/edit').delete((req, res) => {
-	res.send('edit car post');
-});
+router.route('/cars/delete').delete(authenticateMiddleware.authenticate, carController.deleteCarPost);
 // user
 router.route('/user/signUp').post(userController.signUp);
 router.route('/user/signIn').post(userController.signIn);
