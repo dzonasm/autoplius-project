@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
+
     email: {
         type: String,
         required: true,
@@ -35,6 +36,7 @@ const userSchema = new mongoose.Schema({
             if (ret.profileImage) ret.profileImage = 'http://localhost:3000/' + ret.profileImage
         }
     }
+
 })
 
 userSchema.pre('save', function (next) {

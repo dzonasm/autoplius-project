@@ -87,6 +87,7 @@ const logOut = async (req, res) => {
 };
 
 const updateUserInfo = async (req, res) => {
+
     let user = req.user;
     if (req.file) {
         user.profileImage = req.file.path;
@@ -94,7 +95,10 @@ const updateUserInfo = async (req, res) => {
     }
 
     res.send(user);
+
 };
+
+
 
 module.exports = {
     signUp,
