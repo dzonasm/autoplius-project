@@ -4,16 +4,12 @@ const User = require('../models/userModel');
 const Session = require('../models/sessionModel');
 
 const signUp = async (req, res) => {
-    if (req.body.password !== req.body.confirmPassword) {
-        return console.log("wrong passwords")
-    }
     try {
         const user = new User({
             name: req.body.name,
             email: req.body.email,
             phone: req.body.phone,
             password: req.body.password,
-            confirmPassword: req.body.confirmPassword
         })
 
         let newUser = await user.save();
@@ -96,6 +92,16 @@ const updateUserInfo = async (req, res) => {
     res.send(user);
 };
 
+const editUserInfo = async (req, res) => {
+    try {
+        let users = await User.findOneAndUpdate({_id: req.body._id}, {name : req.body.name, email: req.body.email, phone: req.body.phone})
+            res.send(users)
+    } catch (e) {
+        console.log(e)
+        res.send(e)
+    }
+}
+
 module.exports = {
     signUp,
     signIn,
@@ -103,4 +109,5 @@ module.exports = {
     logOut,
     getAllUsers,
     updateUserInfo,
+    editUserInfo
 };

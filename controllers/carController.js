@@ -44,10 +44,29 @@ const deleteCarPost = async (req, res) => {
     }
 }
 
+const editCarInfo = async (req, res) => {
+    try {
+        const relPath = req.file.path.replace(/\\/g, '/')
+        let users = await Car.findOneAndUpdate({_id: req.body._id}, {
+            carDescription: req.body.carDescription,
+            carBrand: req.body.carBrand,
+            carModel: req.body.carModel,
+            carYear: req.body.carYear,
+            carMileage: req.body.carMileage,
+            carPrice: req.body.carPrice,
+            carImage: relPath
+        })
+        res.send(users)
+    } catch (e) {
+        console.log(e)
+        res.send(e)
+    }
+}
+
 module.exports = {
     getAllCars,
     createPost,
     getMyCarPosts,
     deleteCarPost,
-
+    editCarInfo
 }
