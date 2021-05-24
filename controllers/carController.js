@@ -30,7 +30,6 @@ const createPost = async (req, res) => {
 }
 
 
-
 const getMyCarPosts = async (req, res) => {
 
     let carPosts = await Car.find({userId: req.user._id})
@@ -52,6 +51,5 @@ module.exports = {
     createPost,
     getMyCarPosts,
     deleteCarPost,
-
 }
 
