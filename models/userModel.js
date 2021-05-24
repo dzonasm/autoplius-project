@@ -22,14 +22,14 @@ const userSchema = new mongoose.Schema({
 		type: Date,
 		default: Date.now,
 	},
-	// profileImage: {
-	// 	type: String
-	// }
+	profileImage: {
+		type: String
+	}
 }, {
 	toJSON: {
 		transform(doc, ret) {
 			delete ret.password
-			// if(ret.profileImage) ret.profileImage= 'http://localhost:3000/' + ret.profileImage
+			if(ret.profileImage) ret.profileImage= 'http://localhost:3000/' + ret.profileImage
 		}
 	}
 })
