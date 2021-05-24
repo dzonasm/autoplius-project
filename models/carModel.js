@@ -23,15 +23,26 @@ const carPost = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    carPrice: {
+        type: Number,
+        required: true,
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
     carDescription: {
         type: String,
-        // },
-        // toJSON: {
-        //     transform(doc, ret) {
-        //         delete ret.password
-        //         if (ret.profileImage) ret.profileImage = 'http://localhost:3000/' + ret.profileImage
-        //     }
-        // }
+    },
+    carImage: {
+        type: String
+    }
+}, {
+    toJSON: {
+        transform(doc, ret) {
+            if (ret.carImage)
+          ret.carImage= 'http://localhost:3000/' + ret.carImage
+        }
     }
 })
 

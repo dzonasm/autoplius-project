@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../autoplius-fe/.idea/autoplius-fe.iml" filepath="$PROJECT_DIR$/../autoplius-fe/.idea/autoplius-fe.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/autoplius-project.iml" filepath="$PROJECT_DIR$/.idea/autoplius-project.iml" />
     </modules>
   </component>

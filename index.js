@@ -7,6 +7,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const router = require('./routes/routes')
 
+
 const corsOptions = {
 	allowedHeaders: ['userauth', 'Content-Type'],
 	exposedHeaders: ['userauth'],
@@ -40,9 +41,9 @@ app.use(
 )
 
 app.use('/uploads', express.static('uploads'))
-
 // norint pasiekti router turim kreiptis i localhost:3000/api/v1
 app.use('/api/v1', router)
+
 
 // requestas - kreipimasis i serveri, norint gaut ar issiust data
 // get - requesto metodas
