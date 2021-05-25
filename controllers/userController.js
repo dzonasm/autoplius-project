@@ -94,8 +94,12 @@ const updateUserInfo = async (req, res) => {
 
 const editUserInfo = async (req, res) => {
     try {
-        let users = await User.findOneAndUpdate({_id: req.body._id}, {name : req.body.name, email: req.body.email, phone: req.body.phone})
-            res.send(users)
+        let users = await User.findOneAndUpdate({_id: req.body._id}, {
+            name: req.body.name,
+            email: req.body.email,
+            phone: req.body.phone
+        })
+        res.send(users)
     } catch (e) {
         console.log(e)
         res.send(e)
