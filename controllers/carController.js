@@ -7,7 +7,9 @@ const getAllCars = async (req, res) => {
 
 const createPost = async (req, res) => {
 	try {
+
 		const relPath = req.file.path.replace(/\\/g, "/");
+
 		const car = new Car({
 			userId: req.user._id,
 			carDescription: req.body.carDescription,
@@ -17,6 +19,7 @@ const createPost = async (req, res) => {
 			carMileage: req.body.carMileage,
 			carPrice: req.body.carPrice,
 			carImage: relPath,
+
 		});
 
 		let saveCar = await car.save();
