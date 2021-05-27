@@ -25,6 +25,7 @@ router
 	.route("/cars/mycars")
 	.get(authenticateMiddleware.authenticate, carController.getMyCarPosts)
 	.post(authenticateMiddleware.authenticate, upload.single("carImage"), carController.createPost);
+
 router.route("/cars/mycars").post(authenticateMiddleware.authenticate, carController.createPost);
 router
 	.route("/cars/editCarInfo")

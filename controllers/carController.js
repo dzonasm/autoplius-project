@@ -65,10 +65,6 @@ const editCarInfo = async (req, res) => {
 	}
 };
 
-// gaunu req objekte make, model, year(from-to), price(from-to), mileage
-// turiu conditionally apsirasyti query, kuris susidarys tik is tu argumentu, kurie yra passinti
-// upper ir lower letters
-
 const searchCars = async (req, res) => {
 	try {
 		const searchQuery = {};
