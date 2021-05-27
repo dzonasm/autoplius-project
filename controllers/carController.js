@@ -115,9 +115,15 @@ const searchCars = async (req, res) => {
 	}
 };
 
+const getPostById = async (req, res) => {
+	let car = await Car.find({ _id: await req.body.id });
+	res.send(car);
+};
+
 module.exports = {
 	getAllCars,
 	createPost,
+	getPostById,
 	getMyCarPosts,
 	deleteCarPost,
 	editCarInfo,
