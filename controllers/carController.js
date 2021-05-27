@@ -45,7 +45,7 @@ const deleteCarPost = async (req, res) => {
 
 const editCarInfo = async (req, res) => {
 	try {
-		const relPath = req.file.path.replace(/\\/g, "/");
+		// const relPath = req.file.path.replace(/\\/g, "/");
 		let users = await Car.findOneAndUpdate(
 			{ _id: req.body._id },
 			{
@@ -55,7 +55,7 @@ const editCarInfo = async (req, res) => {
 				carYear: req.body.carYear,
 				carMileage: req.body.carMileage,
 				carPrice: req.body.carPrice,
-				carImage: relPath,
+				// carImage: relPath,
 			},
 		);
 		res.send(users);
