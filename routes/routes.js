@@ -20,8 +20,10 @@ const upload = multer({
 
 //cars
 router.route("/cars").get(carController.getAllCars);
+router.route("/cars/getOnePost").post(authenticateMiddleware.authenticate, carController.getPostById);
 router
 	.route("/cars/mycars")
+	.get(authenticateMiddleware.authenticate, carController.getMyCarPosts)
 	.post(authenticateMiddleware.authenticate, upload.single("carImage"), carController.createPost);
 
 router.route("/cars/mycars").post(authenticateMiddleware.authenticate, carController.createPost);

@@ -7,9 +7,7 @@ const getAllCars = async (req, res) => {
 
 const createPost = async (req, res) => {
 	try {
-
 		const relPath = req.file.path.replace(/\\/g, "/");
-
 		const car = new Car({
 			userId: req.user._id,
 			carDescription: req.body.carDescription,
@@ -19,7 +17,6 @@ const createPost = async (req, res) => {
 			carMileage: req.body.carMileage,
 			carPrice: req.body.carPrice,
 			carImage: relPath,
-
 		});
 
 		let saveCar = await car.save();
@@ -68,10 +65,6 @@ const editCarInfo = async (req, res) => {
 	}
 };
 
-// gaunu req objekte make, model, year(from-to), price(from-to), mileage
-// turiu conditionally apsirasyti query, kuris susidarys tik is tu argumentu, kurie yra passinti
-// upper ir lower letters
-
 const searchCars = async (req, res) => {
 	try {
 		const searchQuery = {};
@@ -118,9 +111,15 @@ const searchCars = async (req, res) => {
 	}
 };
 
+const getPostById = async (req, res) => {
+	let car = await Car.find({ _id: await req.body.id });
+	res.send(car);
+};
+
 module.exports = {
 	getAllCars,
 	createPost,
+	getPostById,
 	getMyCarPosts,
 	deleteCarPost,
 	editCarInfo,
